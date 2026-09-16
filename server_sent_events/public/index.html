@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Mensagens - SSE</title>
+  <style>
+    body {background-color: mediumpurple}
+    h1 {font-size: 50px; color: #ffffff; font-family: "Arial",sans-serif; }
+    .message_box {width: 95%; background-color: #ffffff; padding: 20px; flex-direction: row; align-items: center; }
+    span {font-size: 14px; color: #000000; font-family: "Arial",sans-serif; }
+  </style>
+</head>
+<body>
+  <h1>Mensagem - SSE</h1>
+  <div class="message_box">
+    <span id="mensagens">
+      Sejão bem vindos ao Mensagens - SSE!
+    </span>
+  </div>
+
+  <script>
+    //Use EventSource to connect to the stream
+    const eventSource = new EventSource('http://localhost:3000/stream');
+
+    //Listen for "message" events pushed by the server
+    eventSource.addEventListener("message", (event) => {
+      document.getElementById('mensagens').innerHTML = event.data;
+    })
+  </script>
+</body>
+</html>
